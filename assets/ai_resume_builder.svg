@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Sky-blue to soft lilac/purple -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e3edff" />
+      <stop offset="50%" stop-color="#f0f3ff" />
+      <stop offset="100%" stop-color="#e8e5ff" />
+    </linearGradient>
+
+    <!-- Circle Backdrop Gradient -->
+    <linearGradient id="circle-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7da1f7" stop-opacity="0.65" />
+      <stop offset="60%" stop-color="#a3b8f9" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#ced5f9" stop-opacity="0.1" />
+    </linearGradient>
+
+    <!-- Podium Gradients -->
+    <linearGradient id="podium-top" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e5eaff" />
+      <stop offset="100%" stop-color="#ccd3ff" />
+    </linearGradient>
+    <linearGradient id="podium-side" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#adb7fb" />
+      <stop offset="100%" stop-color="#808ee9" />
+    </linearGradient>
+    
+    <linearGradient id="podium-top-base" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0e5ff" />
+      <stop offset="100%" stop-color="#c4cbff" />
+    </linearGradient>
+    <linearGradient id="podium-side-base" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a2abf9" />
+      <stop offset="100%" stop-color="#727fe5" />
+    </linearGradient>
+
+    <!-- Resume Card Gradient & Shadows -->
+    <linearGradient id="resume-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8f9ff" />
+    </linearGradient>
+
+    <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="4" dy="24" stdDeviation="20" flood-color="#4a59a0" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Glassmorphic Panels Shadow & Gradients -->
+    <filter id="glass-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#4e5da3" flood-opacity="0.2" />
+    </filter>
+
+    <linearGradient id="glass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.15" />
+    </linearGradient>
+
+    <linearGradient id="sparkle-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7aa1f7" />
+      <stop offset="100%" stop-color="#a485ff" />
+    </linearGradient>
+
+    <!-- Text Placeholders Gradients -->
+    <linearGradient id="blue-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7b9ef8" />
+      <stop offset="100%" stop-color="#9cb5ff" />
+    </linearGradient>
+    
+    <linearGradient id="purple-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a18dfa" />
+      <stop offset="100%" stop-color="#c6b8ff" />
+    </linearGradient>
+
+    <linearGradient id="light-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d0d7f1" />
+      <stop offset="100%" stop-color="#e3e7f9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Sky-Blue to Lilac Background -->
+  <rect width="100%" height="100%" fill="url(#bg-grad)" />
+
+  <!-- Central Lavender Circular Backdrop -->
+  <circle cx="400" cy="270" r="280" fill="url(#circle-grad)" />
+
+  <!-- Dotted Grid Effect in the Background -->
+  <g opacity="0.15" fill="#5872cc">
+    <circle cx="200" cy="150" r="2" />
+    <circle cx="200" cy="190" r="2" />
+    <circle cx="240" cy="150" r="2" />
+    <circle cx="240" cy="190" r="2" />
+    <circle cx="560" cy="150" r="2" />
+    <circle cx="560" cy="190" r="2" />
+    <circle cx="600" cy="150" r="2" />
+    <circle cx="600" cy="190" r="2" />
+  </g>
+
+  <!-- Left Connecting Dashed Line -->
+  <path d="M 190,300 C 230,300 240,302 270,302" stroke="#93a8ff" stroke-width="2.5" stroke-dasharray="6,5" stroke-linecap="round" fill="none" opacity="0.8" />
+
+  <!-- Right Connecting Dashed Line -->
+  <path d="M 610,308 C 570,308 550,304 530,304" stroke="#93a8ff" stroke-width="2.5" stroke-dasharray="6,5" stroke-linecap="round" fill="none" opacity="0.8" />
+  <path d="M 610,308 C 610,250 560,220 520,215" stroke="#93a8ff" stroke-width="2.5" stroke-dasharray="6,5" stroke-linecap="round" fill="none" opacity="0.6" />
+
+  <!-- Bottom 3D Podium base layer (lower cylinder) -->
+  <g transform="translate(400, 520)">
+    <!-- Base Cylinder Side -->
+    <path d="M -230,0 L -230,16 A 230,35 0 0,0 230,16 L 230,0 Z" fill="url(#podium-side-base)" />
+    <!-- Base Cylinder Top -->
+    <ellipse cx="0" cy="0" rx="230" ry="35" fill="url(#podium-top-base)" />
+  </g>
+
+  <!-- Bottom 3D Podium top layer (upper cylinder) -->
+  <g transform="translate(400, 498)">
+    <!-- Top Cylinder Side -->
+    <path d="M -200,0 L -200,18 A 200,30 0 0,0 200,18 L 200,0 Z" fill="url(#podium-side)" />
+    <!-- Top Cylinder Top -->
+    <ellipse cx="0" cy="0" rx="200" ry="30" fill="url(#podium-top)" />
+  </g>
+
+  <!-- Central Tilted Resume Card -->
+  <!-- We apply rotation and slight perspective tilt via transform matrix/skew -->
+  <g transform="translate(400, 275) rotate(-5) skewX(-4) scale(0.95)" filter="url(#card-shadow)">
+    <!-- Base Document Card (280 width x 400 height) -->
+    <!-- Centered at -140, -200 -->
+    <rect x="-140" y="-200" width="280" height="400" rx="14" fill="url(#resume-grad)" stroke="#ffffff" stroke-width="2" />
+
+    <!-- Left Header Column: Profile Avatar Silhouette -->
+    <g transform="translate(-115, -175)">
+      <!-- Avatar Circle Frame -->
+      <circle cx="24" cy="24" r="24" fill="#e1e6fd" />
+      <!-- Silhouette Icon -->
+      <circle cx="24" cy="18" r="8" fill="#7da1f7" />
+      <path d="M 10,38 C 10,30 15,28 24,28 C 33,28 38,30 38,38 Z" fill="#7da1f7" />
+    </g>
+
+    <!-- Right Header Column: Title text placeholders -->
+    <g transform="translate(-50, -170)">
+      <!-- Name line -->
+      <rect x="0" y="0" width="130" height="10" rx="4" fill="url(#blue-bar)" />
+      <!-- Job Title line -->
+      <rect x="0" y="16" width="165" height="7" rx="3.5" fill="url(#purple-bar)" />
+      <!-- Email/Web links placeholder -->
+      <rect x="0" y="29" width="90" height="5" rx="2.5" fill="url(#light-bar)" />
+    </g>
+
+    <line x1="-115" y1="-115" x2="115" y2="-115" stroke="#e1e6fd" stroke-width="1.5" />
+
+    <!-- Body Section 1: Professional Experience -->
+    <g transform="translate(-115, -100)">
+      <!-- Section Title Header -->
+      <rect x="0" y="0" width="50" height="8" rx="4" fill="url(#purple-bar)" />
+      
+      <!-- Experience 1 Bullet Points and details -->
+      <g transform="translate(0, 16)">
+        <circle cx="4" cy="4" r="3.5" fill="#7da1f7" />
+        <rect x="14" y="1" width="180" height="5" rx="2.5" fill="url(#blue-bar)" />
+        
+        <circle cx="4" cy="18" r="3.5" fill="#7da1f7" />
+        <rect x="14" y="15" width="200" height="5" rx="2.5" fill="url(#light-bar)" />
+
+        <circle cx="4" cy="32" r="3.5" fill="#7da1f7" />
+        <rect x="14" y="29" width="150" height="5" rx="2.5" fill="url(#light-bar)" />
+
+        <circle cx="4" cy="46" r="3.5" fill="#7da1f7" />
+        <rect x="14" y="43" width="190" height="5" rx="2.5" fill="url(#light-bar)" />
+      </g>
+    </g>
+
+    <!-- Body Section 2: Core Highlights / Projects -->
+    <g transform="translate(-115, -15)">
+      <!-- Section Title Header -->
+      <rect x="0" y="0" width="55" height="8" rx="4" fill="url(#purple-bar)" />
+
+      <!-- Experience 2 Details -->
+      <g transform="translate(0, 16)">
+        <circle cx="4" cy="4" r="3.5" fill="#7da1f7" />
+        <rect x="14" y="1" width="195" height="5" rx="2.5" fill="url(#blue-bar)" />
+
+        <circle cx="4" cy="18" r="3.5" fill="#7da1f7" />
+        <rect x="14" y="15" width="210" height="5" rx="2.5" fill="url(#light-bar)" />
+
+        <circle cx="4" cy="32" r="3.5" fill="#7da1f7" />
+        <rect x="14" y="29" width="170" height="5" rx="2.5" fill="url(#light-bar)" />
+      </g>
+    </g>
+
+    <!-- Body Section 3: Skills Footer (Grid structure) -->
+    <g transform="translate(-115, 65)">
+      <!-- Section Title Header -->
+      <rect x="0" y="0" width="45" height="8" rx="4" fill="url(#purple-bar)" />
+
+      <!-- Columns of Skills lists -->
+      <g transform="translate(0, 16)">
+        <!-- Col 1 -->
+        <g transform="translate(0, 0)">
+          <circle cx="3" cy="3" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="1" width="40" height="4" rx="2" fill="url(#light-bar)" />
+          
+          <circle cx="3" cy="15" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="13" width="50" height="4" rx="2" fill="url(#light-bar)" />
+
+          <circle cx="3" cy="27" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="25" width="45" height="4" rx="2" fill="url(#light-bar)" />
+        </g>
+        
+        <!-- Col 2 -->
+        <g transform="translate(80, 0)">
+          <circle cx="3" cy="3" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="1" width="55" height="4" rx="2" fill="url(#light-bar)" />
+          
+          <circle cx="3" cy="15" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="13" width="40" height="4" rx="2" fill="url(#light-bar)" />
+
+          <circle cx="3" cy="27" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="25" width="48" height="4" rx="2" fill="url(#light-bar)" />
+        </g>
+
+        <!-- Col 3 -->
+        <g transform="translate(160, 0)">
+          <circle cx="3" cy="3" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="1" width="45" height="4" rx="2" fill="url(#light-bar)" />
+          
+          <circle cx="3" cy="15" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="13" width="55" height="4" rx="2" fill="url(#light-bar)" />
+
+          <circle cx="3" cy="27" r="2.5" fill="#7da1f7" />
+          <rect x="10" y="25" width="40" height="4" rx="2" fill="url(#light-bar)" />
+        </g>
+      </g>
+    </g>
+
+    <!-- Elegant Glossy Overlay Sheen -->
+    <path d="M -140,-200 L 40,-200 L -140,-20 Z" fill="#ffffff" opacity="0.06" pointer-events="none" />
+  </g>
+
+  <!-- Left Floating Sparkle Glassmorphic Card -->
+  <g transform="translate(150, 300) rotate(2)" filter="url(#glass-shadow)">
+    <!-- Glass background plate -->
+    <rect x="-40" y="-40" width="80" height="80" rx="16" fill="url(#glass-grad)" stroke="#ffffff" stroke-width="1.8" />
+    
+    <!-- Sparkle/Magic Wand Accent Graphic -->
+    <g transform="scale(0.85) translate(-24, -24)">
+      <!-- Main Sparkle star -->
+      <path d="M 24,6 C 24,15 27,18 36,18 C 27,18 24,21 24,30 C 24,21 21,18 12,18 C 21,18 24,15 24,6 Z" fill="url(#sparkle-grad)" />
+      <!-- Secondary mini sparkles -->
+      <path d="M 38,30 C 38,33 39,34 42,34 C 39,34 38,35 38,38 C 38,35 37,34 34,34 C 37,34 38,33 38,30 Z" fill="#7da1f7" opacity="0.8" />
+      <path d="M 12,32 C 12,34 13,35 15,35 C 13,35 12,36 12,38 C 12,36 11,35 9,35 C 11,35 12,34 12,32 Z" fill="#a485ff" opacity="0.8" />
+    </g>
+  </g>
+
+  <!-- Right Floating AI Microchip Glassmorphic Card -->
+  <g transform="translate(650, 310) rotate(-3)" filter="url(#glass-shadow)">
+    <!-- Glass background plate -->
+    <rect x="-40" y="-40" width="80" height="80" rx="16" fill="url(#glass-grad)" stroke="#ffffff" stroke-width="1.8" />
+    
+    <!-- AI Microchip Graphic -->
+    <g transform="translate(-22, -22)">
+      <!-- Silicon Core base square -->
+      <rect x="6" y="6" width="32" height="32" rx="4" fill="none" stroke="#7da1f7" stroke-width="2.5" />
+      
+      <!-- Inner core chip -->
+      <rect x="11" y="11" width="22" height="22" rx="3" fill="url(#sparkle-grad)" />
+      
+      <!-- Microchip Pins -->
+      <!-- Top pins -->
+      <line x1="14" y1="1" x2="14" y2="6" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="22" y1="1" x2="22" y2="6" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="30" y1="1" x2="30" y2="6" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      
+      <!-- Bottom pins -->
+      <line x1="14" y1="38" x2="14" y2="43" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="22" y1="38" x2="22" y2="43" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="30" y1="38" x2="30" y2="43" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Left pins -->
+      <line x1="1" y1="14" x2="6" y2="14" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="1" y1="22" x2="6" y2="22" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="1" y1="30" x2="6" y2="30" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Right pins -->
+      <line x1="38" y1="14" x2="43" y2="14" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="38" y1="22" x2="43" y2="22" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+      <line x1="38" y1="30" x2="43" y2="30" stroke="#7da1f7" stroke-width="2" stroke-linecap="round" />
+
+      <!-- Inside chip lettering: "AI" -->
+      <text x="22" y="26" text-anchor="middle" font-family="'Space Grotesk', 'Inter', sans-serif" font-size="13" font-weight="800" fill="#ffffff" letter-spacing="-0.5">AI</text>
+    </g>
+  </g>
+</svg>

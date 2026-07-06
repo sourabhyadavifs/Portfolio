@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <!-- Definitions for filters -->
+  <defs>
+    <!-- Soft shadow for the orange circle to give modern elevation -->
+    <filter id="logo-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Clean white background -->
+  <rect width="100%" height="100%" fill="#ffffff" />
+
+  <!-- Center Group with Shadow -->
+  <g filter="url(#logo-shadow)">
+    <!-- Main Orange Circle (matching exact shade) -->
+    <circle cx="400" cy="300" r="210" fill="#f15a24" />
+
+    <!-- Dark Purple Ring (Arms) -->
+    <circle cx="400" cy="300" r="130" fill="none" stroke="#251a54" stroke-width="5" />
+
+    <!-- Globe/Orbit Lines (White) -->
+    <circle cx="400" cy="300" r="110" fill="none" stroke="#ffffff" stroke-width="4.5" />
+    <ellipse cx="400" cy="300" rx="140" ry="60" fill="none" stroke="#ffffff" stroke-width="4.5" transform="rotate(-20, 400, 300)" />
+    <ellipse cx="400" cy="300" rx="60" ry="140" fill="none" stroke="#ffffff" stroke-width="4.5" transform="rotate(-20, 400, 300)" />
+
+    <!-- Bottom-Left Hand Silhouette -->
+    <g transform="translate(305, 335) rotate(45)">
+      <path d="M 0,0 C -5,-5 -8,-15 -5,-25 C -4,-30 0,-40 3,-45 C 4,-47 6,-47 7,-45 C 8,-42 5,-32 6,-25 C 10,-35 13,-40 16,-40 C 18,-40 19,-37 17,-32 C 20,-37 23,-39 25,-37 C 27,-35 25,-28 22,-20 C 26,-27 29,-28 30,-26 C 31,-24 29,-18 24,-10 C 20,-2 14,10 7,15 Z" fill="#251a54" />
+    </g>
+
+    <!-- Top-Right Hand Silhouette -->
+    <g transform="translate(495, 265) rotate(225)">
+      <path d="M 0,0 C -5,-5 -8,-15 -5,-25 C -4,-30 0,-40 3,-45 C 4,-47 6,-47 7,-45 C 8,-42 5,-32 6,-25 C 10,-35 13,-40 16,-40 C 18,-40 19,-37 17,-32 C 20,-37 23,-39 25,-37 C 27,-35 25,-28 22,-20 C 26,-27 29,-28 30,-26 C 31,-24 29,-18 24,-10 C 20,-2 14,10 7,15 Z" fill="#251a54" />
+    </g>
+
+    <!-- Bold NETRO Text with Outlines for Legibility -->
+    <g transform="translate(400, 300) rotate(-16)">
+      <!-- Outer dark grey shadow line -->
+      <text x="0" y="24" text-anchor="middle" font-family="'Space Grotesk', 'Inter', -apple-system, sans-serif" font-size="105" font-weight="900" letter-spacing="1" fill="#4a4a4a" stroke="#4a4a4a" stroke-width="16" stroke-linejoin="round" opacity="0.8">
+        NETRO
+      </text>
+      <!-- Inner white separator outline -->
+      <text x="0" y="24" text-anchor="middle" font-family="'Space Grotesk', 'Inter', -apple-system, sans-serif" font-size="105" font-weight="900" letter-spacing="1" fill="#ffffff" stroke="#ffffff" stroke-width="12" stroke-linejoin="round">
+        NETRO
+      </text>
+      <!-- Foreground solid black text -->
+      <text x="0" y="24" text-anchor="middle" font-family="'Space Grotesk', 'Inter', -apple-system, sans-serif" font-size="105" font-weight="900" letter-spacing="1" fill="#000000">
+        NETRO
+      </text>
+    </g>
+  </g>
+</svg>
