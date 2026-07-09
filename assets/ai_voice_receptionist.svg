@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Mint green to soft teal/cyan -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ecfdf5" />
+      <stop offset="50%" stop-color="#f0fdf4" />
+      <stop offset="100%" stop-color="#e6f4ea" />
+    </linearGradient>
+
+    <!-- Circle Backdrop Gradient -->
+    <linearGradient id="circle-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#10b981" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.05" />
+    </linearGradient>
+
+    <!-- Card Shadow -->
+    <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="4" dy="24" stdDeviation="20" flood-color="#065f46" flood-opacity="0.15" />
+    </filter>
+
+    <!-- Glassmorphic Panels Shadow & Gradients -->
+    <filter id="glass-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#047857" flood-opacity="0.12" />
+    </filter>
+
+    <linearGradient id="glass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2" />
+    </linearGradient>
+
+    <linearGradient id="sparkle-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+
+    <!-- Waves Gradients -->
+    <linearGradient id="wave-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0.3" />
+    </linearGradient>
+    <linearGradient id="wave-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#6ee7b7" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Clean Mint-Green Background -->
+  <rect width="100%" height="100%" fill="url(#bg-grad)" />
+
+  <!-- Central Emerald Circular Backdrop -->
+  <circle cx="400" cy="270" r="280" fill="url(#circle-grad)" />
+
+  <!-- Dotted Grid Effect in the Background -->
+  <g opacity="0.12" fill="#047857">
+    <circle cx="200" cy="150" r="2" />
+    <circle cx="200" cy="190" r="2" />
+    <circle cx="240" cy="150" r="2" />
+    <circle cx="240" cy="190" r="2" />
+    <circle cx="560" cy="150" r="2" />
+    <circle cx="560" cy="190" r="2" />
+    <circle cx="600" cy="150" r="2" />
+    <circle cx="600" cy="190" r="2" />
+  </g>
+
+  <!-- Left Connecting Dashed Line -->
+  <path d="M 190,300 C 230,300 240,302 270,302" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6,5" stroke-linecap="round" fill="none" opacity="0.6" />
+
+  <!-- Right Connecting Dashed Line -->
+  <path d="M 610,308 C 570,308 550,304 530,304" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6,5" stroke-linecap="round" fill="none" opacity="0.6" />
+
+  <!-- MAIN PHONE/VOICE CARD (Left-centered layered layout) -->
+  <g transform="translate(140, 110)" filter="url(#card-shadow)">
+    <!-- Base Card -->
+    <rect width="320" height="400" rx="24" fill="#ffffff" />
+    
+    <!-- Top Bar: Status / Salon Name -->
+    <rect width="320" height="64" rx="24" fill="#f0fdf4" />
+    <rect x="0" y="40" width="320" height="24" fill="#f0fdf4" />
+    
+    <circle cx="36" cy="32" r="16" fill="#10b981" />
+    <path d="M 31,32 L 34,35 L 41,28" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <text x="64" y="37" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="#064e3b">Green Trends Voice AI</text>
+    <circle cx="280" cy="32" r="4" fill="#10b981" />
+    <text x="250" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="10" fill="#047857" opacity="0.8">ONLINE</text>
+
+    <!-- Main Card Body: Voice Interaction Graphic -->
+    <!-- Sound Waves animation style lines -->
+    <g transform="translate(40, 110)">
+      <text x="0" y="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="18" fill="#111827">Incoming Call...</text>
+      <text x="0" y="40" font-family="system-ui, -apple-system, sans-serif" font-weight="500" font-size="12" fill="#6b7280">Answering customer enquiry</text>
+
+      <!-- Animated soundwave curves -->
+      <path d="M 10,120 C 30,70 50,150 70,120 C 90,90 110,140 130,120 C 150,100 170,150 190,120 C 210,90 230,130 240,120" stroke="url(#wave-grad-1)" stroke-width="4" stroke-linecap="round" fill="none" />
+      <path d="M 10,120 C 25,90 40,140 55,120 C 70,100 85,130 100,120 C 115,110 130,140 145,120 C 160,100 175,130 190,120" stroke="url(#wave-grad-2)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7" />
+
+      <!-- Equalizer Bars at bottom -->
+      <g transform="translate(0, 180)">
+        <rect x="0" y="20" width="8" height="40" rx="4" fill="#10b981" />
+        <rect x="16" y="5" width="8" height="55" rx="4" fill="#34d399" />
+        <rect x="32" y="15" width="8" height="45" rx="4" fill="#059669" />
+        <rect x="48" y="25" width="8" height="35" rx="4" fill="#a7f3d0" />
+        <rect x="64" y="10" width="8" height="50" rx="4" fill="#10b981" />
+        <rect x="80" y="30" width="8" height="30" rx="4" fill="#34d399" />
+        <rect x="96" y="18" width="8" height="42" rx="4" fill="#059669" />
+        <rect x="112" y="28" width="8" height="32" rx="4" fill="#a7f3d0" />
+        <rect x="128" y="8" width="8" height="52" rx="4" fill="#10b981" />
+        <rect x="144" y="22" width="8" height="38" rx="4" fill="#34d399" />
+        <rect x="160" y="12" width="8" height="48" rx="4" fill="#059669" />
+        <rect x="176" y="25" width="8" height="35" rx="4" fill="#a7f3d0" />
+        <rect x="192" y="5" width="8" height="55" rx="4" fill="#10b981" />
+        <rect x="208" y="20" width="8" height="40" rx="4" fill="#34d399" />
+        <rect x="224" y="15" width="8" height="45" rx="4" fill="#059669" />
+      </g>
+    </g>
+  </g>
+
+  <!-- FOREGROUND GLASSMORPHIC CALENDAR/SCHEDULER CARD (Right-centered overlay) -->
+  <g transform="translate(420, 240)" filter="url(#glass-shadow)">
+    <!-- Glass Panel Base -->
+    <rect width="260" height="240" rx="20" fill="url(#glass-grad)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.5" />
+    
+    <!-- Top Bar -->
+    <text x="24" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#064e3b">CAL.COM SCHEDULING</text>
+    <rect x="180" y="22" width="56" height="18" rx="9" fill="#047857" />
+    <text x="189" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8" fill="#ffffff">BOOKED</text>
+
+    <!-- Calendar Slot 1 -->
+    <g transform="translate(20, 60)">
+      <rect width="220" height="44" rx="10" fill="#ffffff" fill-opacity="0.8" />
+      <circle cx="22" cy="22" r="12" fill="#d1fae5" />
+      <path d="M 18,22 C 18,20 20,18 22,18 C 24,18 26,20 26,22" stroke="#047857" stroke-width="1.5" fill="none" />
+      <circle cx="22" cy="24" r="3" fill="#047857" />
+      
+      <text x="44" y="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="10" fill="#1f2937">Haircut &amp; Styling</text>
+      <text x="44" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8" fill="#6b7280">14:30 - 15:15 • Confirmed</text>
+      
+      <circle cx="200" cy="22" r="4" fill="#10b981" />
+    </g>
+
+    <!-- Calendar Slot 2 -->
+    <g transform="translate(20, 114)">
+      <rect width="220" height="44" rx="10" fill="#ffffff" fill-opacity="0.8" />
+      <circle cx="22" cy="22" r="12" fill="#d1fae5" />
+      <path d="M 18,22 C 18,20 20,18 22,18 C 24,18 26,20 26,22" stroke="#047857" stroke-width="1.5" fill="none" />
+      <circle cx="22" cy="24" r="3" fill="#047857" />
+      
+      <text x="44" y="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="10" fill="#1f2937">Facial &amp; Grooming</text>
+      <text x="44" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8" fill="#6b7280">15:30 - 16:30 • Confirmed</text>
+      
+      <circle cx="200" cy="22" r="4" fill="#10b981" />
+    </g>
+
+    <!-- Google Calendar Synced Indicator -->
+    <g transform="translate(20, 178)">
+      <line x1="0" y1="10" x2="220" y2="10" stroke="#047857" stroke-width="1" stroke-dasharray="2,3" opacity="0.3" />
+      <circle cx="16" cy="30" r="8" fill="#ffffff" />
+      <!-- Minimalist Calendar Icon -->
+      <rect x="12" y="27" width="8" height="7" rx="1" fill="none" stroke="#2563eb" stroke-width="1.2" />
+      <line x1="14" y1="25" x2="14" y2="27" stroke="#2563eb" stroke-width="1.2" />
+      <line x1="18" y1="25" x2="18" y2="27" stroke="#2563eb" stroke-width="1.2" />
+      
+      <text x="32" y="33" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="9" fill="#047857">Google Calendar Real-time Sync Active</text>
+    </g>
+  </g>
+
+  <!-- Decorative Sparkles / Stars -->
+  <g transform="translate(480, 80)" opacity="0.8">
+    <path d="M 0,15 C 10,15 15,10 15,0 C 15,10 20,15 30,15 C 20,15 15,20 15,30 C 15,20 10,15 0,15 Z" fill="url(#sparkle-grad)" />
+  </g>
+  <g transform="translate(100, 380)" opacity="0.6">
+    <path d="M 0,10 C 7,10 10,7 10,0 C 10,7 13,10 20,10 C 13,10 10,13 10,20 C 10,13 7,10 0,10 Z" fill="url(#sparkle-grad)" />
+  </g>
+  <g transform="translate(680, 420)" opacity="0.7">
+    <path d="M 0,8 C 5,8 8,5 8,0 C 8,5 11,8 16,8 C 11,8 8,11 8,16 C 8,11 5,8 0,8 Z" fill="url(#sparkle-grad)" />
+  </g>
+</svg>

@@ -9,6 +9,9 @@ import {
   FileText,
   Award,
   Briefcase,
+  Package,
+  Folder,
+  Trophy,
   Sparkles,
   Menu,
   X,
@@ -27,7 +30,13 @@ import {
   MORE_PROJECTS,
   EXPERIENCE_HISTORY,
   RECOGNITIONS,
-  Project
+  Project,
+  ZOMATO_PROJECT_DATA,
+  SLIKK_PROJECT_DATA,
+  WISPR_FLOW_PROJECT_DATA,
+  LINKEDIN_AUTOMATION_PROJECT_DATA,
+  HOMESTAY_ASSISTANT_PROJECT_DATA,
+  CREDITPLANNER_PROJECT_DATA
 } from "./data";
 
 export default function App() {
@@ -199,6 +208,9 @@ export default function App() {
       document.activeElement.blur();
     }
 
+    // Always close the mobile menu immediately so the user gets instant feedback
+    setIsMenuOpen(false);
+
     const scrollWithOffset = (id: string) => {
       const el = document.getElementById(id);
       if (el) {
@@ -215,26 +227,28 @@ export default function App() {
 
     if (currentProject !== null) {
       setCurrentProject(null);
-      // Wait for exit transition to complete before scrolling
+      // Wait for project detail exit transition to complete before scrolling
       setTimeout(() => {
         scrollWithOffset(sectionId);
       }, 350);
     } else {
-      scrollWithOffset(sectionId);
+      // If the mobile menu was open, wait for the menu closing transition
+      // to complete before smooth scrolling, to prevent the animation from interrupting the scroll.
+      if (isMenuOpen) {
+        setTimeout(() => {
+          scrollWithOffset(sectionId);
+        }, 250);
+      } else {
+        scrollWithOffset(sectionId);
+      }
     }
-
-    // Delay closing the mobile menu slightly to let the touch/click action complete 
-    // seamlessly on mobile browsers without interrupting the transition or scrolling.
-    setTimeout(() => {
-      setIsMenuOpen(false);
-    }, 150);
   };
 
   // Fallback default professional portrait of a South Asian product leader
-  const defaultProfileUrl = "/assets/profile.jpg?v=1.0.1";
+  const defaultProfileUrl = "/assets/profile.jpg";
 
   // Selected project object lookup
-  const activeProjectData = SELECTED_WORK.find((p) => p.id === currentProject);
+  const activeProjectData = [...SELECTED_WORK, ZOMATO_PROJECT_DATA, SLIKK_PROJECT_DATA, WISPR_FLOW_PROJECT_DATA, LINKEDIN_AUTOMATION_PROJECT_DATA, HOMESTAY_ASSISTANT_PROJECT_DATA, CREDITPLANNER_PROJECT_DATA].find((p) => p.id === currentProject);
 
   return (
     <div className={`min-h-screen transition-colors duration-300 font-sans ${isDark ? "bg-[#0A0A0A] text-[#F5F5F7]" : "bg-[#FAF9F6] text-[#1C1C1E]"}`}>
@@ -246,7 +260,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`fixed top-24 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-full text-xs font-medium shadow-lg border backdrop-blur-md ${
+            className={`fixed top-24 left-1/2 -translate-x-1/2 z-55 px-4 py-2.5 rounded-full text-xs font-medium shadow-lg border backdrop-blur-md ${
               isDark 
                 ? "bg-white/10 text-[#F5F5F7] border-white/10" 
                 : "bg-black/5 text-stone-900 border-stone-200"
@@ -258,7 +272,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Sticky Header Navigation */}
-      <header className={`fixed top-0 left-0 right-0 z-40 border-b backdrop-blur-md transition-colors duration-300 ${
+      <header className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
         isDark ? "bg-[#0A0A0A]/80 border-white/5" : "bg-[#FAF9F6]/80 border-black/5"
       }`}>
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -349,7 +363,7 @@ export default function App() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className={`fixed top-16 left-0 right-0 z-30 border-b md:hidden backdrop-blur-lg overflow-hidden ${
+            className={`fixed top-16 left-0 right-0 z-45 border-b md:hidden backdrop-blur-lg overflow-hidden ${
               isDark ? "bg-[#0A0A0A]/95 border-white/5" : "bg-[#FAF9F6]/95 border-black/5"
             }`}
           >
@@ -419,7 +433,7 @@ export default function App() {
                     title={isOwner ? "Click to upload your own profile photo" : undefined}
                   >
                     <img
-                      src={isOwner ? (customProfile || defaultProfileUrl) : defaultProfileUrl}
+                      src={defaultProfileUrl}
                       alt="Sourabh Yadav"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-700"
@@ -522,6 +536,68 @@ export default function App() {
                 </div>
               </section>
 
+              {/* SECTION 1.5: PROFESSIONAL METRICS */}
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="w-full pt-10 border-t border-dashed border-stone-200 dark:border-white/5 !mt-12 md:!mt-16"
+              >
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-0 text-center">
+                  {/* Years Experience */}
+                  <div className="flex flex-col items-center justify-center px-4 border-none md:border-r md:border-stone-200/60 md:dark:border-white/10">
+                    <div className="flex items-center space-x-2 mb-1 justify-center">
+                      <Briefcase className="w-4 h-4 text-stone-400 dark:text-[#86868B] shrink-0 stroke-[1.5]" />
+                      <span className="font-display font-bold text-2xl sm:text-3xl text-stone-900 dark:text-white leading-none">
+                        2+
+                      </span>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-[#86868B] leading-snug">
+                      Years Experience
+                    </span>
+                  </div>
+
+                  {/* Products Delivered */}
+                  <div className="flex flex-col items-center justify-center px-4 border-none md:border-r md:border-stone-200/60 md:dark:border-white/10">
+                    <div className="flex items-center space-x-2 mb-1 justify-center">
+                      <Package className="w-4 h-4 text-stone-400 dark:text-[#86868B] shrink-0 stroke-[1.5]" />
+                      <span className="font-display font-bold text-2xl sm:text-3xl text-stone-900 dark:text-white leading-none">
+                        5
+                      </span>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-[#86868B] leading-snug">
+                      Products Delivered
+                    </span>
+                  </div>
+
+                  {/* PM Case Studies */}
+                  <div className="flex flex-col items-center justify-center px-4 border-none md:border-r md:border-stone-200/60 md:dark:border-white/10">
+                    <div className="flex items-center space-x-2 mb-1 justify-center">
+                      <Folder className="w-4 h-4 text-stone-400 dark:text-[#86868B] shrink-0 stroke-[1.5]" />
+                      <span className="font-display font-bold text-2xl sm:text-3xl text-stone-900 dark:text-white leading-none">
+                        4
+                      </span>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-[#86868B] leading-snug">
+                      PM Case Studies
+                    </span>
+                  </div>
+
+                  {/* Product Competition Wins */}
+                  <div className="flex flex-col items-center justify-center px-4 border-none">
+                    <div className="flex items-center space-x-2 mb-1 justify-center">
+                      <Trophy className="w-4 h-4 text-stone-400 dark:text-[#86868B] shrink-0 stroke-[1.5]" />
+                      <span className="font-display font-bold text-2xl sm:text-3xl text-stone-900 dark:text-white leading-none">
+                        3
+                      </span>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-[#86868B] leading-snug">
+                      Product Competition Wins
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* SECTION 2: MY STORY */}
               <section id="story" className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4 border-t border-dashed border-stone-200 dark:border-white/5">
                 <div className="md:col-span-4">
@@ -604,6 +680,7 @@ export default function App() {
                           {proj.id === "creditplanner" && "Fintech Product Strategy"}
                           {proj.id === "netro" && "Digital Networking Platform"}
                           {proj.id === "airesumebuilder" && "AI Product"}
+                          {proj.id === "aivoicereceptionist" && "AI VOICE AGENT"}
                         </div>
                       </div>
 
@@ -613,7 +690,9 @@ export default function App() {
                           <h3 className="font-display font-bold text-lg group-hover:text-amber-600 dark:group-hover:text-white transition-colors">
                             {proj.name}
                           </h3>
-                          <p className={`text-xs sm:text-[13px] leading-relaxed line-clamp-3 ${
+                          <p className={`text-xs sm:text-[13px] leading-relaxed ${
+                            proj.id === "aivoicereceptionist" ? "" : "line-clamp-3"
+                          } ${
                             isDark ? "text-[#86868B]" : "text-stone-500"
                           }`}>
                             {proj.tagline}
@@ -627,6 +706,112 @@ export default function App() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </section>
+
+              {/* SECTION 2.1: AI LAB */}
+              <section id="ai-lab" className="space-y-6 pt-4 border-t border-dashed border-stone-200 dark:border-white/5">
+                <div className="space-y-1 text-left">
+                  <span className="font-mono text-[10px] tracking-widest uppercase font-semibold text-stone-400 dark:text-[#86868B]">
+                    02 / AI LAB
+                  </span>
+                  <h2 className="font-display font-bold text-xl md:text-2xl tracking-tight uppercase tracking-wider">
+                    AI LAB
+                  </h2>
+                  <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-500"} max-w-3xl`}>
+                    AI products, automations, and intelligent workflow solutions built using LLMs, conversational AI, automation platforms, and no-code tools.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {MORE_PROJECTS.filter(p => p.id === "homestay-assistant" || p.id === "linkedin-automation")
+                    .sort((a, b) => {
+                      const order = ["homestay-assistant", "linkedin-automation"];
+                      return order.indexOf(a.id) - order.indexOf(b.id);
+                    })
+                    .map((proj) => (
+                      <div
+                        key={proj.id}
+                        id={`more-project-${proj.id}`}
+                        onClick={() => {
+                          if (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") {
+                            setCurrentProject(proj.id);
+                            window.scrollTo({ top: 0 });
+                          }
+                        }}
+                        className={`p-4 rounded-2xl border text-left flex flex-col justify-between space-y-4 hover:border-white/20 transition-all duration-300 ${
+                          (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") ? "cursor-pointer hover:shadow-lg hover:scale-[1.01]" : ""
+                        } ${
+                          isDark 
+                            ? "bg-white/5 border-white/10" 
+                            : "bg-stone-50/50 border-stone-200/80 hover:border-stone-300"
+                        }`}
+                      >
+                        <div className="space-y-2">
+                          <span className={`text-[9px] font-mono uppercase tracking-wider font-semibold ${
+                            isDark ? "text-[#86868B]" : "text-stone-400"
+                          }`}>
+                            {proj.category}
+                          </span>
+                          <h3 className={`font-display font-bold text-xs tracking-tight ${
+                            (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") ? "group-hover:text-amber-600 dark:group-hover:text-white transition-colors" : ""
+                          }`}>
+                            {proj.name}
+                          </h3>
+                        </div>
+                        
+                        <div className="space-y-3 flex-grow flex flex-col justify-between">
+                          <p className={`text-[11px] leading-normal ${
+                            isDark ? "text-[#86868B]" : "text-stone-500"
+                          }`}>
+                            {proj.description}
+                          </p>
+   
+                          {proj.links && proj.links.length > 0 && (
+                            <div className="pt-2.5 border-t border-stone-200/50 dark:border-white/5 flex flex-wrap gap-x-2 gap-y-1">
+                              {proj.links.map((link, lIdx) => {
+                                const isInteractiveCaseStudy = (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") && link.type === "Case Study";
+                                if (isInteractiveCaseStudy) {
+                                  return (
+                                    <button
+                                      key={lIdx}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setCurrentProject(proj.id);
+                                        window.scrollTo({ top: 0 });
+                                      }}
+                                      className={`text-[9px] font-bold flex items-center space-x-0.5 uppercase tracking-wider transition-colors cursor-pointer text-left ${
+                                        isDark 
+                                          ? "text-stone-300 hover:text-white" 
+                                          : "text-amber-700 hover:text-amber-900"
+                                      }`}
+                                    >
+                                      <span>{link.title}</span>
+                                    </button>
+                                  );
+                                }
+                                return (
+                                  <a
+                                    key={lIdx}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`text-[9px] font-bold flex items-center space-x-0.5 uppercase tracking-wider transition-colors ${
+                                      isDark 
+                                        ? "text-stone-300 hover:text-white" 
+                                        : "text-amber-700 hover:text-amber-900"
+                                    }`}
+                                  >
+                                    <span>{link.title}</span>
+                                    <ExternalLink className="w-2.5 h-2.5 shrink-0" />
+                                  </a>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </section>
 
@@ -773,7 +958,7 @@ export default function App() {
                                   : "bg-stone-100 border-stone-200 hover:bg-stone-200 text-stone-700"
                               }`}
                             >
-                              <span>View Certificate</span>
+                              <span>View LinkedIn Post</span>
                               <ExternalLink className="w-3 h-3 shrink-0" />
                             </a>
                           </div>
@@ -782,103 +967,109 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-              </section>
-
-              {/* SECTION 6: MORE PROJECTS */}
+              </section>              {/* SECTION 6: ADDITIONAL CASE STUDIES */}
               <section id="more-projects" className="space-y-6 pt-4 border-t border-dashed border-stone-200 dark:border-white/5">
-                <div className="space-y-1">
+                <div className="space-y-1 text-left">
                   <span className="font-mono text-[10px] tracking-widest uppercase font-semibold text-stone-400 dark:text-[#86868B]">
                     04 / Exploration Index
                   </span>
                   <h2 className="font-display font-bold text-xl md:text-2xl tracking-tight uppercase tracking-wider">
-                    More Projects
+                    Additional Case Studies
                   </h2>
+                  <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-500"} max-w-3xl`}>
+                    Product strategy, UX research, product audits, and business case studies.
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                  {MORE_PROJECTS.map((proj) => (
-                    <div
-                      key={proj.id}
-                      id={`more-project-${proj.id}`}
-                      className={`p-4 rounded-2xl border text-left flex flex-col justify-between space-y-4 hover:border-white/20 transition-all duration-300 ${
-                        isDark 
-                          ? "bg-white/5 border-white/10" 
-                          : "bg-stone-50/50 border-stone-200/80 hover:border-stone-300"
-                      }`}
-                    >
-                      <div className="space-y-2">
-                        <span className={`text-[9px] font-mono uppercase tracking-wider font-semibold ${
-                          isDark ? "text-[#86868B]" : "text-stone-400"
-                        }`}>
-                          {proj.category}
-                        </span>
-                        <h3 className="font-display font-bold text-xs tracking-tight">
-                          {proj.name}
-                        </h3>
-                      </div>
-                      
-                      <div className="space-y-3 flex-grow flex flex-col justify-between">
-                        {proj.id === "wispr-flow" ? (
-                          <div className="flex flex-col space-y-2">
-                            <motion.div
-                              animate={{ height: expandedProjects[proj.id] ? "auto" : "50px" }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="overflow-hidden"
-                            >
-                              <p className={`text-[11px] leading-normal ${
-                                expandedProjects[proj.id] ? "" : "line-clamp-3"
-                              } ${
-                                isDark ? "text-[#86868B]" : "text-stone-500"
-                              }`}>
-                                {proj.description}
-                              </p>
-                            </motion.div>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setExpandedProjects(prev => ({
-                                  ...prev,
-                                  [proj.id]: !prev[proj.id]
-                                }));
-                              }}
-                              className={`text-[10px] font-mono font-semibold self-start hover:underline focus:outline-none pt-1 ${
-                                isDark ? "text-stone-400 hover:text-white" : "text-stone-600 hover:text-stone-900"
-                              }`}
-                            >
-                              {expandedProjects[proj.id] ? "Read Less" : "Read More"}
-                            </button>
-                          </div>
-                        ) : (
+                  {MORE_PROJECTS.filter(p => p.id === "creditplanner" || p.id === "zomato" || p.id === "slikk" || p.id === "wispr-flow")
+                    .sort((a, b) => {
+                      const order = ["creditplanner", "zomato", "slikk", "wispr-flow"];
+                      return order.indexOf(a.id) - order.indexOf(b.id);
+                    })
+                    .map((proj) => (
+                      <div
+                        key={proj.id}
+                        id={`more-project-${proj.id}`}
+                        onClick={() => {
+                          if (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") {
+                            setCurrentProject(proj.id);
+                            window.scrollTo({ top: 0 });
+                          }
+                        }}
+                        className={`p-4 rounded-2xl border text-left flex flex-col justify-between space-y-4 hover:border-white/20 transition-all duration-300 ${
+                          (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") ? "cursor-pointer hover:shadow-lg hover:scale-[1.01]" : ""
+                        } ${
+                          isDark 
+                            ? "bg-white/5 border-white/10" 
+                            : "bg-stone-50/50 border-stone-200/80 hover:border-stone-300"
+                        }`}
+                      >
+                        <div className="space-y-2">
+                          <span className={`text-[9px] font-mono uppercase tracking-wider font-semibold ${
+                            isDark ? "text-[#86868B]" : "text-stone-400"
+                          }`}>
+                            {proj.category}
+                          </span>
+                          <h3 className={`font-display font-bold text-xs tracking-tight ${
+                            (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") ? "group-hover:text-amber-600 dark:group-hover:text-white transition-colors" : ""
+                          }`}>
+                            {proj.name}
+                          </h3>
+                        </div>
+                        
+                        <div className="space-y-3 flex-grow flex flex-col justify-between">
                           <p className={`text-[11px] leading-normal ${
                             isDark ? "text-[#86868B]" : "text-stone-500"
                           }`}>
                             {proj.description}
                           </p>
-                        )}
-
-                        {proj.links && proj.links.length > 0 && (
-                          <div className="pt-2.5 border-t border-stone-200/50 dark:border-white/5 flex flex-wrap gap-x-2 gap-y-1">
-                            {proj.links.map((link, lIdx) => (
-                              <a
-                                key={lIdx}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`text-[9px] font-bold flex items-center space-x-0.5 uppercase tracking-wider transition-colors ${
-                                  isDark 
-                                    ? "text-stone-300 hover:text-white" 
-                                    : "text-amber-700 hover:text-amber-900"
-                                }`}
-                              >
-                                <span>{link.title}</span>
-                                <ExternalLink className="w-2.5 h-2.5 shrink-0" />
-                              </a>
-                            ))}
-                          </div>
-                        )}
+   
+                          {proj.links && proj.links.length > 0 && (
+                            <div className="pt-2.5 border-t border-stone-200/50 dark:border-white/5 flex flex-wrap gap-x-2 gap-y-1">
+                              {proj.links.map((link, lIdx) => {
+                                const isInteractiveCaseStudy = (proj.id === "zomato" || proj.id === "slikk" || proj.id === "wispr-flow" || proj.id === "linkedin-automation" || proj.id === "homestay-assistant" || proj.id === "creditplanner") && link.type === "Case Study";
+                                if (isInteractiveCaseStudy) {
+                                  return (
+                                    <button
+                                      key={lIdx}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setCurrentProject(proj.id);
+                                        window.scrollTo({ top: 0 });
+                                      }}
+                                      className={`text-[9px] font-bold flex items-center space-x-0.5 uppercase tracking-wider transition-colors cursor-pointer text-left ${
+                                        isDark 
+                                          ? "text-stone-300 hover:text-white" 
+                                          : "text-amber-700 hover:text-amber-900"
+                                      }`}
+                                    >
+                                      <span>{link.title}</span>
+                                    </button>
+                                  );
+                                }
+                                return (
+                                  <a
+                                    key={lIdx}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`text-[9px] font-bold flex items-center space-x-0.5 uppercase tracking-wider transition-colors ${
+                                      isDark 
+                                        ? "text-stone-300 hover:text-white" 
+                                        : "text-amber-700 hover:text-amber-900"
+                                    }`}
+                                  >
+                                    <span>{link.title}</span>
+                                    <ExternalLink className="w-2.5 h-2.5 shrink-0" />
+                                  </a>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </section>
 
@@ -1060,6 +1251,18 @@ export default function App() {
                               ? "Product Discovery, User Research, Market Analysis, Product Strategy, Feature Prioritization, Wireframing"
                               : activeProjectData.id === "airesumebuilder"
                               ? "Product Discovery, User Research, Product Strategy, AI Workflow Design, Prompt Engineering, MVP Development"
+                              : activeProjectData.id === "zomato"
+                              ? "Problem Discovery, User Research, Product Analysis, Journey Mapping, Feature Prioritization, UX Strategy, Solution Design, Presentation"
+                              : activeProjectData.id === "slikk"
+                              ? "Product Strategy, User Research, Problem Framing, Market Research, Customer Journey Mapping, Solution Ideation, Go-To-Market Strategy, Business Analysis, Presentation Development"
+                              : activeProjectData.id === "wispr-flow"
+                              ? "Product Discovery, User Research, Usability Testing, User Journey Mapping, Product Analysis, UX Audit, Opportunity Identification, Recommendation Development, Customer Experience Evaluation, Product Documentation"
+                              : activeProjectData.id === "linkedin-automation"
+                              ? "Product Management, Workflow Automation, AI Integration, Automation Strategy"
+                              : activeProjectData.id === "homestay-assistant"
+                              ? "Product Management, AI Product Design, Conversational UX, Recommendation Systems"
+                              : activeProjectData.id === "aivoicereceptionist"
+                              ? "Product Manager & AI Builder"
                               : "Lead Product Manager"
                             }
                           </p>
@@ -1076,6 +1279,18 @@ export default function App() {
                               ? ["Product Discovery", "User Research", "Market Research", "Product Strategy", "Feature Prioritization", "Go-To-Market Thinking"]
                               : activeProjectData.id === "airesumebuilder"
                               ? ["Product Discovery", "User Research", "Product Strategy", "AI Product Design", "Prompt Engineering", "MVP Development"]
+                              : activeProjectData.id === "zomato"
+                              ? ["Product Discovery", "User Research", "Customer Journey Mapping", "Behavioral Analysis", "Product Strategy", "Feature Prioritization", "UX Thinking", "Problem Framing", "Opportunity Assessment", "Storytelling"]
+                              : activeProjectData.id === "slikk"
+                              ? ["Product Strategy", "User Research", "Market Research", "Customer Journey Mapping", "Go-To-Market Planning", "Problem Framing", "Prioritization", "Business Analysis", "Stakeholder Thinking", "Storytelling"]
+                              : activeProjectData.id === "wispr-flow"
+                              ? ["Product Discovery", "User Research", "Usability Testing", "Product Analysis", "UX Audit", "User Journey Mapping", "Problem Identification", "Customer Experience", "Product Strategy", "Critical Thinking"]
+                              : activeProjectData.id === "linkedin-automation"
+                              ? ["Product Discovery", "Workflow Design", "Process Optimization", "AI Product Thinking", "API Integration", "User Journey Mapping", "MVP Development", "Systems Thinking"]
+                              : activeProjectData.id === "homestay-assistant"
+                              ? ["Product Discovery", "User Research", "AI Product Design", "Conversational UX", "Prompt Engineering", "Customer Journey Mapping", "Personalization Strategy", "UX Design", "MVP Development", "Systems Thinking"]
+                              : activeProjectData.id === "aivoicereceptionist"
+                              ? ["Product Discovery", "User Research", "AI Product Management", "Conversational UX Design", "Voice AI Design", "Prompt Engineering", "Customer Journey Mapping", "Workflow Design", "API Integration Planning", "Systems Thinking", "MVP Development", "Product Strategy"]
                               : ["LLM Grounding", "ATS Parsers", "Responsive Markdown"]
                             ).map((tag, tIdx) => (
                               <span 
@@ -1101,9 +1316,58 @@ export default function App() {
                               ? "Transforming networking from contact exchange into relationship building."
                               : activeProjectData.id === "airesumebuilder"
                               ? "Helping professionals transition careers through AI-powered resume customization."
+                              : activeProjectData.id === "zomato"
+                              ? "Reducing decision fatigue through behavioral product design and smarter recommendation experiences."
+                              : activeProjectData.id === "slikk"
+                              ? "Developed a go-to-market strategy for Slikk's Home Decor expansion in HSR Layout, focusing on trust, quality assurance, and customer confidence rather than delivery speed."
+                              : activeProjectData.id === "wispr-flow"
+                              ? "Conducted a Product & Onboarding UX Audit of Wispr Flow, an AI-powered voice-to-text application, to evaluate the first-time user experience and identify opportunities to improve user activation."
+                              : activeProjectData.id === "linkedin-automation"
+                              ? "Transform manual LinkedIn publishing into an intelligent AI-powered automation workflow."
+                              : activeProjectData.id === "homestay-assistant"
+                              ? "Transform accommodation discovery from traditional search into an intelligent conversational recommendation experience."
+                              : activeProjectData.id === "aivoicereceptionist"
+                              ? "Automate salon enquiries, services pricing, and appointment scheduling through conversational voice agents."
                               : "Making systemic ATS optimization transparent, accessible, and editorial."
                             }
                           </p>
+                        </div>
+
+                        <div>
+                          <h4 className="font-mono text-[9px] uppercase tracking-wider font-semibold text-stone-400 dark:text-[#86868B] mb-1">
+                            Tech Stack & Tools
+                          </h4>
+                          <div className="flex flex-wrap gap-1.5 pt-1">
+                            {(activeProjectData.id === "wispr-flow" 
+                              ? ["Wispr Flow", "Android", "iOS", "Google Docs", "User Research", "UX Analysis"]
+                              : activeProjectData.id === "creditplanner"
+                              ? ["Figma", "User Research", "Fintech Analysis", "PM Frameworks"]
+                              : activeProjectData.id === "netro"
+                              ? ["React", "TypeScript", "Vite", "Tailwind CSS", "Express"]
+                              : activeProjectData.id === "airesumebuilder"
+                              ? ["React", "TypeScript", "Gemini API", "Tailwind CSS", "Express"]
+                              : activeProjectData.id === "zomato"
+                              ? ["Zomato App", "Figma", "User Research", "Product Analysis"]
+                              : activeProjectData.id === "slikk"
+                              ? ["Slikk App", "Market Research", "Journey Mapping", "Product Strategy"]
+                              : activeProjectData.id === "linkedin-automation"
+                              ? ["Google Sheets", "Gemini AI API", "Make.com", "LinkedIn API", "Gmail"]
+                              : activeProjectData.id === "homestay-assistant"
+                              ? ["Zapier AI Chatbot", "OpenAI GPT Model", "Prompt Engineering", "Travel Recommendation Logic"]
+                              : activeProjectData.id === "aivoicereceptionist"
+                              ? ["Retell AI", "Gemini 2.5 Flash-Lite", "Google Calendar", "Cal.com API", "Prompt Engineering", "Voice AI Workflow Design"]
+                              : ["React", "TypeScript", "Tailwind CSS"]
+                            ).map((tag, tIdx) => (
+                              <span 
+                                key={tIdx} 
+                                className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                                  isDark ? "bg-white/5 text-white" : "bg-stone-150 text-stone-700"
+                                }`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
                         </div>
 
                         {/* Direct resources rendering in the meta sidebar */}
@@ -1134,6 +1398,27 @@ export default function App() {
                                   <ExternalLink className="w-3 h-3 text-stone-400 shrink-0" />
                                 </a>
                               ))}
+
+                              {/* Demo Guide for AI Voice Receptionist */}
+                              {activeProjectData.id === "aivoicereceptionist" && (
+                                <div className="mt-4 pt-3 border-t border-dashed border-stone-200 dark:border-white/10 text-left space-y-2">
+                                  <h5 className="font-display font-bold text-[11px] uppercase tracking-wider text-amber-600 dark:text-white">
+                                    Demo Guide
+                                  </h5>
+                                  <ul className={`text-[11px] leading-relaxed space-y-2 ${
+                                    isDark ? "text-[#86868B]" : "text-stone-500"
+                                  }`}>
+                                    <li className="flex items-start">
+                                      <span className="mr-1.5 shrink-0 text-stone-400 dark:text-[#86868B]">•</span>
+                                      <span>To quickly understand what I built and how the product works, watch from <strong>1:00 to 1:45</strong>.</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                      <span className="mr-1.5 shrink-0 text-stone-400 dark:text-[#86868B]">•</span>
+                                      <span>To experience the complete AI Voice Agent interaction, start watching from <strong>2:05 onwards</strong>.</span>
+                                    </li>
+                                  </ul>
+                                </div>
+                              )}
                             </div>
                           </div>
                         )}
@@ -1150,7 +1435,7 @@ export default function App() {
                           <span className="font-mono text-xs text-stone-400 dark:text-[#86868B] font-semibold">01 /</span>
                           <h3 className="font-display font-bold text-lg md:text-xl">The Challenge</h3>
                         </div>
-                        <p className={`text-sm sm:text-base leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
+                        <p className={`text-sm sm:text-base leading-relaxed whitespace-pre-line ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
                           {activeProjectData.challenge}
                         </p>
                       </div>
@@ -1161,7 +1446,7 @@ export default function App() {
                           <span className="font-mono text-xs text-stone-400 dark:text-[#86868B] font-semibold">02 /</span>
                           <h3 className="font-display font-bold text-lg md:text-xl">User Research</h3>
                         </div>
-                        <p className={`text-sm sm:text-base leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
+                        <p className={`text-sm sm:text-base leading-relaxed whitespace-pre-line ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
                           {activeProjectData.research}
                         </p>
                       </div>
@@ -1188,7 +1473,7 @@ export default function App() {
                                 {activeProjectData.insights}
                               </p>
                             </div>
-                            {(activeProjectData.id === "creditplanner" || activeProjectData.id === "netro" || activeProjectData.id === "airesumebuilder") && (
+                            {(activeProjectData.id === "creditplanner" || activeProjectData.id === "netro" || activeProjectData.id === "airesumebuilder" || activeProjectData.id === "zomato" || activeProjectData.id === "slikk" || activeProjectData.id === "wispr-flow" || activeProjectData.id === "linkedin-automation" || activeProjectData.id === "aivoicereceptionist") && (
                               <div className="pt-3 border-t border-dashed border-stone-200 dark:border-white/10">
                                 <h4 className="font-display font-semibold text-xs uppercase tracking-wide mb-1 text-amber-600 dark:text-white">Learnings</h4>
                                 <p className="text-xs sm:text-sm leading-relaxed text-stone-500 dark:text-[#86868B] whitespace-pre-line font-sans">
@@ -1196,7 +1481,17 @@ export default function App() {
                                     ? "Trust is created through clarity.\nSometimes a simple explanation creates more impact than an entirely new feature."
                                     : activeProjectData.id === "netro"
                                     ? "Networking products succeed when they support relationships, not just contact exchange.\nUser research often reveals deeper problems than initially expected."
-                                    : "Career transitions are positioning problems, not formatting problems.\nPersonalization creates significantly more value than automation alone."
+                                    : activeProjectData.id === "airesumebuilder"
+                                    ? "Career transitions are positioning problems, not formatting problems.\nPersonalization creates significantly more value than automation alone."
+                                    : activeProjectData.id === "slikk"
+                                    ? "• Trust can outperform speed.\n• Customer behaviour changes across product categories.\n• Strong product strategies balance users, business, and operations.\n• Research reduces assumptions.\n• Customer confidence is part of the product experience."
+                                    : activeProjectData.id === "wispr-flow"
+                                    ? "• Small onboarding issues significantly affect activation.\n• Platform-specific onboarding improves usability.\n• Users need to understand value before changing habits.\n• Observing real users reveals hidden friction.\n• Research-driven recommendations create stronger product decisions."
+                                    : activeProjectData.id === "linkedin-automation"
+                                    ? "• Automation removes repetitive work.\n• AI is most valuable inside workflows.\n• End-to-end journeys matter more than isolated features.\n• No-code tools accelerate MVP development.\n• Reliable automation balances UX, scalability, and robustness."
+                                    : activeProjectData.id === "aivoicereceptionist"
+                                    ? "• Designing voice conversations requires different UX principles than text-based chatbots.\n• Structured knowledge bases improve response consistency and reliability.\n• Product thinking is essential when balancing business needs with customer experience.\n• Calendar integration significantly enhances the usefulness of AI voice agents.\n• Clear conversation flows reduce customer confusion and improve booking completion rates."
+                                    : "• More choices don't always improve UX.\n• Decision fatigue creates hidden churn.\n• Great PM opportunities come from behavioral observation.\n• Personalization should reduce effort.\n• Great products help users make decisions."
                                   }
                                 </p>
                               </div>
@@ -1206,20 +1501,354 @@ export default function App() {
                       </div>
 
                       {/* Section Solution */}
-                      <div className="space-y-3" id="case-solution">
+                      <div className="space-y-4" id="case-solution">
                         <div className="flex items-center space-x-2">
                           <span className="font-mono text-xs text-stone-400 dark:text-[#86868B] font-semibold">04 /</span>
                           <h3 className="font-display font-bold text-lg md:text-xl">The Solution</h3>
                         </div>
-                        <p className={`text-sm sm:text-base leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
-                          {activeProjectData.solution}
-                        </p>
+                        {activeProjectData.id === "linkedin-automation" ? (
+                          <div className="space-y-6">
+                            <p className={`text-sm sm:text-base leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
+                              Designed an automated workflow orchestrated by Make.com that transforms raw content ideas into published LinkedIn posts with real-time Gmail notifications:
+                            </p>
+
+                            {/* Workflow diagram / flow pipeline */}
+                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 pt-2">
+                              {[
+                                {
+                                  step: "Google Sheets",
+                                  role: "Idea Input & Status",
+                                  desc: "Holds content ideas, publication dates, and tracks execution status."
+                                },
+                                {
+                                  step: "Gemini AI",
+                                  role: "AI Generation",
+                                  desc: "Transforms ideas into highly engaging, optimized LinkedIn posts."
+                                },
+                                {
+                                  step: "LinkedIn Publishing",
+                                  role: "Auto-Publish",
+                                  desc: "Automatically publishes approved drafts directly to LinkedIn."
+                                },
+                                {
+                                  step: "Gmail Notification",
+                                  role: "Confirmation",
+                                  desc: "Sends real-time email summaries once the post is live."
+                                }
+                              ].map((item, idx) => (
+                                <div 
+                                  key={idx} 
+                                  className={`p-4 rounded-xl border text-left flex flex-col justify-between space-y-2 relative ${
+                                    isDark ? "bg-white/[0.02] border-white/10" : "bg-stone-50 border-stone-200"
+                                  }`}
+                                >
+                                  <div>
+                                    <span className="font-mono text-[9px] uppercase tracking-wider text-amber-600 dark:text-white font-bold block mb-1">
+                                      0{idx + 1} / {item.role}
+                                    </span>
+                                    <h4 className="font-display font-bold text-sm text-stone-800 dark:text-white">
+                                      {item.step}
+                                    </h4>
+                                    <p className={`text-xs leading-relaxed mt-1 ${isDark ? "text-[#86868B]" : "text-stone-500"}`}>
+                                      {item.desc}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Core Pipeline Highlight */}
+                            <div className={`p-4 rounded-xl border border-dashed text-center ${
+                              isDark ? "bg-white/[0.01] border-white/10" : "bg-stone-50 border-stone-200"
+                            }`}>
+                              <span className="font-mono text-[9px] uppercase tracking-wider font-semibold text-stone-400 dark:text-[#86868B]">
+                                Core Automation Pipeline
+                              </span>
+                              <div className="flex flex-wrap items-center justify-center gap-2 mt-2 font-mono text-xs text-amber-600 dark:text-white font-bold">
+                                <span>Idea</span>
+                                <span className="text-stone-400">→</span>
+                                <span>AI Generation</span>
+                                <span className="text-stone-400">→</span>
+                                <span>Publish</span>
+                                <span className="text-stone-400">→</span>
+                                <span>Email Confirmation</span>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (activeProjectData.id === "slikk" || activeProjectData.id === "wispr-flow" || activeProjectData.id === "homestay-assistant" || activeProjectData.id === "aivoicereceptionist") ? (
+                          <div className="space-y-6">
+                            <p className={`text-sm sm:text-base leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
+                              {activeProjectData.id === "slikk" 
+                                ? "Proposed initiatives to prioritize customer trust and confidence over delivery speed:"
+                                : activeProjectData.id === "wispr-flow"
+                                ? "Proposed actionable product recommendations to simplify onboarding, build user trust, and shorten the time-to-value:"
+                                : activeProjectData.id === "aivoicereceptionist"
+                                ? "Designed and developed an AI-powered voice receptionist with the following core capabilities:"
+                                : "Designed an AI-powered conversational recommendation assistant that guides travelers through accommodation discovery. Key capabilities include:"
+                              }
+                            </p>
+                            
+                            {/* Feature Cards Grid */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              {(activeProjectData.id === "slikk" ? [
+                                {
+                                  title: "90 Minutes or Free",
+                                  desc: "A delivery promise designed to balance speed with customer confidence."
+                                },
+                                {
+                                  title: "QA Verification Videos",
+                                  desc: "Show product quality before dispatch."
+                                },
+                                {
+                                  title: "AR Room Visualization",
+                                  desc: "Help customers visualize products in their own homes."
+                                },
+                                {
+                                  title: "Personalized Packaging",
+                                  desc: "Improve trust with customer-tagged verification."
+                                },
+                                {
+                                  title: "Community Trust Loops",
+                                  desc: "Encourage user-generated content and apartment-focused discovery."
+                                }
+                              ] : activeProjectData.id === "wispr-flow" ? [
+                                {
+                                  title: "Permission Flow Improvements",
+                                  desc: "Simplify permission requests and add better guidance."
+                                },
+                                {
+                                  title: "Platform-Specific Onboarding",
+                                  desc: "Provide onboarding tailored to Android and iOS."
+                                },
+                                {
+                                  title: "Stronger Product Positioning",
+                                  desc: "Clearly communicate why Wispr Flow is better than native voice typing."
+                                },
+                                {
+                                  title: "Improved First-Time Experience",
+                                  desc: "Reduce onboarding friction and accelerate activation."
+                                }
+                              ] : activeProjectData.id === "aivoicereceptionist" ? [
+                                {
+                                  title: "AI Voice Receptionist",
+                                  desc: "Engages customers through natural voice conversations and responds to common salon enquiries."
+                                },
+                                {
+                                  title: "Service Information",
+                                  desc: "Provides accurate information about salon services, pricing, business hours, and location using a structured knowledge base."
+                                },
+                                {
+                                  title: "Appointment Booking",
+                                  desc: "Checks available appointment slots using Google Calendar and books appointments through the Cal.com API."
+                                },
+                                {
+                                  title: "Intelligent Call Handling",
+                                  desc: "Transfers calls to the salon owner when customers request assistance beyond the AI's knowledge base."
+                                },
+                                {
+                                  title: "Knowledge-Based Responses",
+                                  desc: "Uses a predefined salon knowledge base to ensure consistent and accurate customer responses."
+                                }
+                              ] : [
+                                {
+                                  title: "Conversational Travel Assistance",
+                                  desc: "Guides travelers naturally through accommodation discovery instead of using static forms."
+                                },
+                                {
+                                  title: "Personalized Homestay Recommendations",
+                                  desc: "Delivers tailored options specifically matched to travel goals and preferences."
+                                },
+                                {
+                                  title: "Preference-Based Filtering",
+                                  desc: "Applies filters dynamically through chat based on budget, destination, and amenities."
+                                },
+                                {
+                                  title: "Dynamic Recommendation Engine",
+                                  desc: "Generates custom recommendations dynamically from user-specified parameters."
+                                },
+                                {
+                                  title: "Simple Chat-Based UX",
+                                  desc: "Minimizes decision fatigue and simplifies the exploration experience."
+                                }
+                              ]).map((item, idx) => (
+                                <div 
+                                  key={idx} 
+                                  className={`p-4 rounded-xl border text-left space-y-2 ${
+                                    isDark ? "bg-white/[0.02] border-white/10" : "bg-stone-50 border-stone-200"
+                                  }`}
+                                >
+                                  <h4 className="font-display font-bold text-sm uppercase tracking-wide text-amber-600 dark:text-white">
+                                    {item.title}
+                                  </h4>
+                                  <p className={`text-xs sm:text-[13px] leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-500"}`}>
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Core Principle Quote Card */}
+                            <div className={`p-5 rounded-2xl border border-dashed text-center space-y-2 ${
+                              isDark 
+                                ? "bg-white/[0.01] border-white/10" 
+                                : "bg-stone-50 border-stone-200"
+                            }`}>
+                              <span className="font-mono text-[9px] uppercase tracking-wider font-semibold text-stone-400 dark:text-[#86868B]">
+                                Core Product Principle
+                              </span>
+                              <div className="flex flex-col items-center justify-center space-y-1 py-1">
+                                <span className={`text-xs line-through ${isDark ? "text-[#86868B]" : "text-stone-400"}`}>
+                                  {activeProjectData.id === "slikk" 
+                                    ? '"How fast can we deliver?"' 
+                                    : activeProjectData.id === "wispr-flow" 
+                                    ? '"Request permissions quickly"'
+                                    : activeProjectData.id === "aivoicereceptionist"
+                                    ? '"Rely on manual receptionists for repetitive queries"'
+                                    : '"Rely on static forms and manual filters"'}
+                                </span>
+                                <span className="text-sm font-bold text-amber-600 dark:text-white uppercase tracking-wider">
+                                  {activeProjectData.id === "slikk" 
+                                    ? '"How confidently can customers purchase?"' 
+                                    : activeProjectData.id === "wispr-flow" 
+                                    ? '"Help users understand value before asking for commitment."'
+                                    : activeProjectData.id === "aivoicereceptionist"
+                                    ? '"Automate repetitive calls to let staff focus on high-quality services."'
+                                    : '"Understand traveler intent and preferences through conversational guidance."'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <p className={`text-sm sm:text-base leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-600"}`}>
+                            {activeProjectData.solution}
+                          </p>
+                        )}
                       </div>
+
+                      {/* Section Process (Slikk / LinkedIn Automation / Homestay Assistant specific) */}
+                      {(activeProjectData.id === "slikk" || activeProjectData.id === "linkedin-automation" || activeProjectData.id === "homestay-assistant" || activeProjectData.id === "aivoicereceptionist") && (
+                        <div className="space-y-4" id="case-process">
+                          <div className="flex items-center space-x-2">
+                            <span className="font-mono text-xs text-stone-400 dark:text-[#86868B] font-semibold">05 /</span>
+                            <h3 className="font-display font-bold text-lg md:text-xl">The Process</h3>
+                          </div>
+                          
+                          {/* Process Timeline/Grid */}
+                          <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                            {(activeProjectData.id === "slikk" ? [
+                              {
+                                step: "Discovery",
+                                desc: "Studied category-specific buying behaviour."
+                              },
+                              {
+                                step: "Prioritization",
+                                desc: "Focused on customer trust instead of delivery speed."
+                              },
+                              {
+                                step: "Wireframing",
+                                desc: "Designed trust-building customer experiences."
+                              },
+                              {
+                                step: "Validation",
+                                desc: "Validated assumptions through customer research and benchmarking."
+                              },
+                              {
+                                step: "Testing",
+                                desc: "Evaluated customer impact, operational feasibility, and scalability."
+                              }
+                            ] : activeProjectData.id === "linkedin-automation" ? [
+                              {
+                                step: "Discovery",
+                                desc: "Identified inefficiencies in manual content publishing."
+                              },
+                              {
+                                step: "Prioritization",
+                                desc: "Focused on automating repetitive, high-effort tasks."
+                              },
+                              {
+                                step: "Workflow Design",
+                                desc: "Designed triggers, actions, and integrations."
+                              },
+                              {
+                                step: "Validation",
+                                desc: "Verified publishing reliability and AI output quality."
+                              },
+                              {
+                                step: "Testing",
+                                desc: "Performed end-to-end testing across Google Sheets, Gemini AI, LinkedIn, and Gmail."
+                              }
+                            ] : activeProjectData.id === "aivoicereceptionist" ? [
+                              {
+                                step: "Discovery",
+                                desc: "Identified repetitive customer enquiries that consume receptionist time and impact salon operations."
+                              },
+                              {
+                                step: "Prioritization",
+                                desc: "Focused on automating high-frequency customer interactions, including pricing enquiries, service information, and appointment booking."
+                              },
+                              {
+                                step: "Conversation Design",
+                                desc: "Designed natural conversational flows that guide customers through information requests and booking processes while maintaining a friendly and professional tone."
+                              },
+                              {
+                                step: "Integration",
+                                desc: "Integrated Google Calendar for availability checking and Cal.com API for appointment scheduling within Retell AI."
+                              },
+                              {
+                                step: "Testing",
+                                desc: "Validated conversation quality, booking accuracy, response consistency, and user experience across multiple customer scenarios."
+                              }
+                            ] : [
+                              {
+                                step: "Discovery",
+                                desc: "Identified challenges with traditional accommodation search experiences."
+                              },
+                              {
+                                step: "Prioritization",
+                                desc: "Focused on reducing search effort through conversational interactions."
+                              },
+                              {
+                                step: "Conversation Design",
+                                desc: "Designed chatbot flows to naturally collect user preferences."
+                              },
+                              {
+                                step: "Validation",
+                                desc: "Tested recommendation quality and conversational usability."
+                              },
+                              {
+                                step: "Testing",
+                                desc: "Evaluated response accuracy, recommendation relevance, and user satisfaction."
+                              }
+                            ]).map((item, idx) => (
+                              <div 
+                                key={idx} 
+                                className={`p-4 rounded-xl border text-left flex flex-col justify-between space-y-3 ${
+                                  isDark ? "bg-white/[0.02] border-white/10" : "bg-stone-50 border-stone-200"
+                                }`}
+                              >
+                                <div className="space-y-1">
+                                  <span className="font-mono text-[9px] uppercase tracking-wider font-bold text-amber-600 dark:text-[#86868B]">
+                                    0{idx + 1}
+                                  </span>
+                                  <h4 className="font-display font-bold text-xs uppercase tracking-wider">
+                                    {item.step}
+                                  </h4>
+                                </div>
+                                <p className={`text-[11px] leading-relaxed ${isDark ? "text-[#86868B]" : "text-stone-500"}`}>
+                                  {item.desc}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       {/* Section Outcome */}
                       <div className="space-y-4" id="case-outcome">
                         <div className="flex items-center space-x-2">
-                          <span className="font-mono text-xs text-stone-400 dark:text-[#86868B] font-semibold">05 /</span>
+                          <span className="font-mono text-xs text-stone-400 dark:text-[#86868B] font-semibold">
+                            {(activeProjectData.id === "slikk" || activeProjectData.id === "linkedin-automation" || activeProjectData.id === "homestay-assistant" || activeProjectData.id === "aivoicereceptionist") ? "06 /" : "05 /"}
+                          </span>
                           <h3 className="font-display font-bold text-lg md:text-xl">Outcome & Impact</h3>
                         </div>
                         
@@ -1232,29 +1861,129 @@ export default function App() {
                           <div className={`p-4 rounded-2xl border text-center ${
                             isDark ? "bg-white/[0.02] border-white/10" : "bg-stone-50 border-stone-200/50"
                           }`}>
-                            <div className="font-display font-extrabold text-2xl md:text-3xl text-white">
-                              {activeProjectData.id === "creditplanner" ? "16 / 19" : activeProjectData.id === "netro" ? "120+" : "3.5x"}
+                            <div className="font-display font-extrabold text-2xl md:text-3xl text-stone-900 dark:text-white">
+                              {activeProjectData.id === "creditplanner" 
+                                ? "16 / 19" 
+                                : activeProjectData.id === "netro" 
+                                ? "120+" 
+                                : activeProjectData.id === "zomato" 
+                                ? "~40%" 
+                                : activeProjectData.id === "slikk"
+                                ? "Runner-Up"
+                                : activeProjectData.id === "wispr-flow"
+                                ? "5"
+                                : activeProjectData.id === "linkedin-automation"
+                                ? "100%"
+                                : activeProjectData.id === "homestay-assistant"
+                                ? "Functional"
+                                : activeProjectData.id === "aivoicereceptionist"
+                                ? "100%"
+                                : "3.5x"
+                              }
                             </div>
                             <div className={`text-[10px] uppercase font-mono tracking-wider font-semibold mt-1 ${
                               isDark ? "text-[#86868B]" : "text-stone-400"
                             }`}>
-                              {activeProjectData.id === "creditplanner" ? "Users Reporting Higher Trust" : activeProjectData.id === "netro" ? "Discovery Discussions" : "Recruiter Callbacks Increase"}
+                              {activeProjectData.id === "creditplanner" 
+                                ? "Users Reporting Higher Trust" 
+                                : activeProjectData.id === "netro" 
+                                ? "Discovery Discussions" 
+                                : activeProjectData.id === "zomato" 
+                                ? "Reduction in Ordering Time" 
+                                : activeProjectData.id === "slikk"
+                                ? "Scaler Builder's League"
+                                : activeProjectData.id === "wispr-flow"
+                                ? "Usability Test Participants"
+                                : activeProjectData.id === "linkedin-automation"
+                                ? "Fully Automated Pipeline"
+                                : activeProjectData.id === "homestay-assistant"
+                                ? "AI Travel Assistant"
+                                : activeProjectData.id === "aivoicereceptionist"
+                                ? "Real-time calendar booking"
+                                : "Recruiter Callbacks Increase"
+                              }
                             </div>
                           </div>
 
                           <div className={`p-4 rounded-2xl border text-center ${
                             isDark ? "bg-white/[0.02] border-white/10" : "bg-stone-50 border-stone-200/50"
                           }`}>
-                            <div className="font-display font-extrabold text-2xl md:text-3xl text-white">
-                              {activeProjectData.id === "creditplanner" ? "Winner" : activeProjectData.id === "netro" ? "Concept" : "40%"}
+                            <div className="font-display font-extrabold text-2xl md:text-3xl text-stone-900 dark:text-white">
+                              {activeProjectData.id === "creditplanner" 
+                                ? "Winner" 
+                                : activeProjectData.id === "netro" 
+                                ? "Concept" 
+                                : activeProjectData.id === "zomato" 
+                                ? "UX" 
+                                : activeProjectData.id === "slikk"
+                                ? "₹25,000"
+                                : activeProjectData.id === "wispr-flow"
+                                ? "Complete"
+                                : activeProjectData.id === "linkedin-automation"
+                                ? "0 min"
+                                : activeProjectData.id === "homestay-assistant"
+                                ? "Minimized"
+                                : activeProjectData.id === "aivoicereceptionist"
+                                ? "Automated"
+                                : "40%"
+                              }
                             </div>
                             <div className={`text-[10px] uppercase font-mono tracking-wider font-semibold mt-1 ${
                               isDark ? "text-[#86868B]" : "text-stone-400"
                             }`}>
-                              {activeProjectData.id === "creditplanner" ? "PM Challenge 2026" : activeProjectData.id === "netro" ? "Complete Design" : "Tailoring prep time saved"}
+                              {activeProjectData.id === "creditplanner" 
+                                ? "PM Challenge 2026" 
+                                : activeProjectData.id === "netro" 
+                                ? "Complete Design" 
+                                : activeProjectData.id === "zomato" 
+                                ? "Behavioral Strategy" 
+                                : activeProjectData.id === "slikk"
+                                ? "Prize Money Won"
+                                : activeProjectData.id === "wispr-flow"
+                                ? "UX Audit Completed"
+                                : activeProjectData.id === "linkedin-automation"
+                                ? "Manual Posting Effort"
+                                : activeProjectData.id === "homestay-assistant"
+                                ? "Decision Fatigue"
+                                : activeProjectData.id === "aivoicereceptionist"
+                                ? "Enquiry & Booking handling"
+                                : "Tailoring prep time saved"
+                              }
                             </div>
                           </div>
                         </div>
+
+                        {/* Recognition Card for Slikk */}
+                        {activeProjectData.id === "slikk" && (
+                          <div className="space-y-4 pt-4">
+                            <div className={`p-5 rounded-2xl border text-left flex flex-col justify-between space-y-4 ${
+                              isDark 
+                                ? "bg-white/5 border-white/10" 
+                                : "bg-[#FCFBFB] border-stone-200"
+                            }`}>
+                              <div className="space-y-2">
+                                <div className={`p-2 w-fit rounded-lg ${isDark ? "bg-white/5 text-white" : "bg-stone-100 text-amber-600"}`}>
+                                  <Award className="w-4 h-4 text-amber-600 dark:text-white" />
+                                </div>
+                                <h3 className="font-display font-bold text-sm tracking-tight pt-1">
+                                  Runner-Up
+                                </h3>
+                                <p className={`text-[10px] font-mono tracking-wide uppercase font-semibold ${
+                                  isDark ? "text-[#86868B]" : "text-stone-500"
+                                }`}>
+                                  The Builder's League Case Competition
+                                </p>
+                                <p className="text-xs font-semibold text-amber-600 dark:text-amber-500">
+                                  Hosted by Scaler School of Business
+                                </p>
+                              </div>
+                              <div className="pt-3 border-t border-dashed border-stone-200 dark:border-white/10 flex items-center justify-between">
+                                <span className={`text-[11px] font-bold uppercase tracking-wider ${isDark ? "text-stone-300" : "text-stone-600"}`}>Prize Money</span>
+                                <span className="text-sm font-extrabold text-amber-600 dark:text-white">₹25,000</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                     </div>
