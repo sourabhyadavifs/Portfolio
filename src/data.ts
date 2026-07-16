@@ -183,18 +183,18 @@ export const SLIKK_PROJECT_DATA: Project = {
 export const WISPR_FLOW_PROJECT_DATA: Project = {
   id: "wispr-flow",
   name: "Wispr Flow",
-  tagline: "Conducted a Product & Onboarding UX Audit of Wispr Flow, an AI-powered voice-to-text application, to evaluate the first-time user experience and identify opportunities to improve user activation. The audit combined personal testing with usability observations from five participants across Android and iOS.",
-  description: "Audited Wispr Flow's onboarding experience to identify usability gaps, improve activation, and recommend product enhancements based on real user testing.",
+  tagline: "Conducted an Onboarding UX Audit of Wispr Flow, evaluating first-time user activation across Android (primary) and iOS platforms. Synthesized testing data from 19 participants to map friction and recommend 5 priority optimizations.",
+  description: "Audited Wispr Flow's onboarding experience to identify activation friction across Android and iOS platforms, proposing five high-impact optimizations based on usability testing with 19 participants.",
   coverImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-  challenge: "Although Wispr Flow communicates a strong value proposition, the onboarding experience introduces friction that slows user activation.\n\nKey issues included:\n• Multiple permission requests without guidance\n• Confusing onboarding flow\n• Android users seeing iPhone-specific instructions\n• Limited differentiation from native voice typing\n• Reduced emphasis on the core value proposition\n\nThe challenge was improving onboarding clarity and helping users reach their first \"Aha!\" moment faster.\n\nFirst impressions strongly influence product adoption. Reducing onboarding friction improves activation, user confidence, and long-term retention. For AI productivity products, onboarding must quickly demonstrate why users should choose the product over built-in alternatives.",
-  research: "Usability Testing\nConducted usability testing with 5 participants (myself plus four additional users), including Android and iPhone users.\n\nUser Journey Analysis\nMapped the onboarding journey from installation through first-time use.\n\nComparative Analysis\nCompared onboarding experiences across Android and iOS.\n\nObservation-Based Research\nDocumented user behaviour, confusion points, navigation patterns, and first impressions.",
-  insights: "• Users quickly understand the value proposition.\n• Permission requests create the biggest onboarding friction.\n• Android onboarding needs platform-specific guidance.\n• Users compare Wispr Flow with native voice typing.\n• The floating voice button creates a memorable \"Aha!\" moment.",
-  solution: "Proposed recommendations as feature cards:\n\n• Permission Flow Improvements: Simplify permission requests and add better guidance.\n• Platform-Specific Onboarding: Provide onboarding tailored to Android and iOS.\n• Stronger Product Positioning: Clearly communicate why Wispr Flow is better than native voice typing.\n• Improved First-Time Experience: Reduce onboarding friction and accelerate activation.\n\nCore product principle:\nShift from \"Request permissions quickly\" to \"Help users understand value before asking for commitment.\"",
-  outcome: "Completed a comprehensive onboarding audit that identified multiple activation barriers and practical opportunities to improve the first-time user experience.\n\nThe audit demonstrated how structured usability research can translate into actionable product recommendations.",
+  challenge: "While Wispr Flow has a strong value proposition, onboarding friction slows user activation. New users experience permission-related drop-offs, platform-misaligned guides, and limited differentiation from native keyboards. The challenge was to identify critical friction points and help users reach their first \"Aha!\" moment faster.",
+  research: "Usability testing with 19 participants (10 Android, 9 iPhone users).\n• Tracked onboarding behavior, observing an average sign-in time of ~4 minutes per user.\n• Analyzed permission-related friction, device walkthroughs, and first impressions.\n• Audited competitive differentiation against built-in voice keyboards (Samsung/Google).",
+  insights: "• Confidence Deficit: The 3.8 Play Store rating on Android creates immediate trust friction compared to the 4.8 App Store rating.\n• Permission Churn: Lack of automated permission detection forces manual app restarts, triggering significant user drop-offs.\n• Walkthrough Misalignment: Displaying iOS-specific tutorial screens to Android users causes severe usability confusion.\n• Tailored Activation: Writing style selection (Formal vs. Casual) and the smart on-focus floating button generate high-value, memorable 'Aha!' moments.\n• Differentiation Gaps: Onboarding fails to highlight advanced AI benefits (rewriting, formatting, style choice) early, leading users to assume it's just native voice typing.",
+  solution: "Proposed five priority product initiatives:\n\n• Auto-Detect Permission Flow: Automate progress detection upon granting permissions to eliminate manual app restarts.\n• OS-Specific Tutorial Guides: Dynamically detect the user's operating system to show dedicated, platform-specific onboarding walkthroughs.\n• Value-First AI Positioning: Highlight core AI features (rewriting, grammar correction, custom styles) early in onboarding to differentiate from default voice keyboards.\n• Visual Brand Balance: Enhance Wispr branding visibility on mobile landing screens without reducing CTA prominence.\n• Post-Aha! Rating Prompts: Prompt for Play Store reviews only after users have experienced tone selection and the smart floating button.",
+  outcome: "Delivered a comprehensive product audit translating usability testing from 19 participants (10 Android, 9 iPhone) into a roadmap of 5 priority recommendations. Proposes a clear strategy to reduce the ~4-minute sign-in friction, resolve the iOS-Android onboarding disparity, and accelerate activation through automated permission detection and device-tailored onboarding walkthroughs.",
   resources: [
     {
       title: "Product & Onboarding UX Audit",
-      url: "https://docs.google.com/document/d/1Y1xN3RuAZ53SliqmRT0vVAEwZzZHQlJY/edit?usp=sharing&ouid=114639471073486384576&rtpof=true&sd=true",
+      url: "https://drive.google.com/file/d/1pU61_JxwLgUTZ9sAAX0gvXawXnbB3Wag/view?usp=sharing",
       type: "Document"
     }
   ]
@@ -315,7 +315,7 @@ export const MORE_PROJECTS: MoreProject[] = [
     id: "wispr-flow",
     name: "Wispr Flow",
     category: "PRODUCT AUDIT & UX RESEARCH",
-    description: "Audited Wispr Flow's onboarding experience to identify usability gaps, improve activation, and recommend product enhancements based on real user testing.",
+    description: "Audited Wispr Flow's onboarding experience to identify activation friction across Android and iOS platforms, proposing five high-impact optimizations based on real user research.",
     links: [
       {
         title: "CASE STUDY ↗",

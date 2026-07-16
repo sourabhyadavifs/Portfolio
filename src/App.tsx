@@ -245,7 +245,7 @@ export default function App() {
   };
 
   // Fallback default professional portrait of a South Asian product leader
-  const defaultProfileUrl = "/assets/profile.jpg";
+  const defaultProfileUrl = "/assets/profile.png";
 
   // Selected project object lookup
   const activeProjectData = [...SELECTED_WORK, ZOMATO_PROJECT_DATA, SLIKK_PROJECT_DATA, WISPR_FLOW_PROJECT_DATA, LINKEDIN_AUTOMATION_PROJECT_DATA, HOMESTAY_ASSISTANT_PROJECT_DATA, CREDITPLANNER_PROJECT_DATA].find((p) => p.id === currentProject);
@@ -504,7 +504,7 @@ export default function App() {
 
                     <a
                       id="resume-button-hero"
-                      href="https://drive.google.com/file/d/17Ulqh6XlIrXNZaZSkrfQFJqgUy3Mu5qG/view?usp=sharing"
+                      href="https://drive.google.com/file/d/12jzIo5FZTYcfvuxM7bIRsAI4LWf3uAI0/view?usp=sharing"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest border transition-all duration-300 flex items-center space-x-1.5 ${
@@ -1142,7 +1142,7 @@ export default function App() {
 
                   <a
                     id="resume-contact"
-                    href="https://drive.google.com/file/d/17Ulqh6XlIrXNZaZSkrfQFJqgUy3Mu5qG/view?usp=sharing"
+                    href="https://drive.google.com/file/d/12jzIo5FZTYcfvuxM7bIRsAI4LWf3uAI0/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide flex items-center space-x-1.5 transition-all shadow-sm ${
@@ -1321,7 +1321,7 @@ export default function App() {
                               : activeProjectData.id === "slikk"
                               ? "Developed a go-to-market strategy for Slikk's Home Decor expansion in HSR Layout, focusing on trust, quality assurance, and customer confidence rather than delivery speed."
                               : activeProjectData.id === "wispr-flow"
-                              ? "Conducted a Product & Onboarding UX Audit of Wispr Flow, an AI-powered voice-to-text application, to evaluate the first-time user experience and identify opportunities to improve user activation."
+                              ? "Conducted an end-to-end Product & Onboarding UX Audit of Wispr Flow, evaluating first-time user activation across Android (primary) and iOS platforms to identify friction and map optimizations."
                               : activeProjectData.id === "linkedin-automation"
                               ? "Transform manual LinkedIn publishing into an intelligent AI-powered automation workflow."
                               : activeProjectData.id === "homestay-assistant"
@@ -1486,7 +1486,7 @@ export default function App() {
                                     : activeProjectData.id === "slikk"
                                     ? "• Trust can outperform speed.\n• Customer behaviour changes across product categories.\n• Strong product strategies balance users, business, and operations.\n• Research reduces assumptions.\n• Customer confidence is part of the product experience."
                                     : activeProjectData.id === "wispr-flow"
-                                    ? "• Small onboarding issues significantly affect activation.\n• Platform-specific onboarding improves usability.\n• Users need to understand value before changing habits.\n• Observing real users reveals hidden friction.\n• Research-driven recommendations create stronger product decisions."
+                                    ? "• Platform Alignment: Onboarding walkthroughs must match the user's OS (Android vs iOS) to avoid confusion.\n• Zero-Restart Flow: Permission gates require automatic status checks; manual app restarts trigger immediate drop-offs.\n• Contextual Social Proof: Review requests must be delayed until users experience their first custom tone 'Aha!' moment.\n• Early Positioning: Advanced AI features (style tuning, grammar corrections) must be highlighted early to beat native keyboards."
                                     : activeProjectData.id === "linkedin-automation"
                                     ? "• Automation removes repetitive work.\n• AI is most valuable inside workflows.\n• End-to-end journeys matter more than isolated features.\n• No-code tools accelerate MVP development.\n• Reliable automation balances UX, scalability, and robustness."
                                     : activeProjectData.id === "aivoicereceptionist"
@@ -1613,20 +1613,24 @@ export default function App() {
                                 }
                               ] : activeProjectData.id === "wispr-flow" ? [
                                 {
-                                  title: "Permission Flow Improvements",
-                                  desc: "Simplify permission requests and add better guidance."
+                                  title: "Auto-Detect Permission Flow",
+                                  desc: "Automatically detect permission success, display a clear success indicator, and progress users instantly to eliminate the manual reopening loop."
                                 },
                                 {
-                                  title: "Platform-Specific Onboarding",
-                                  desc: "Provide onboarding tailored to Android and iOS."
+                                  title: "OS-Specific Tutorial Guides",
+                                  desc: "Dynamically detect user devices to display tailored Android or iOS walkthroughs instead of default iOS tutorials."
                                 },
                                 {
-                                  title: "Stronger Product Positioning",
-                                  desc: "Clearly communicate why Wispr Flow is better than native voice typing."
+                                  title: "AI Feature Differentiation",
+                                  desc: "Highlight high-value features (grammar correction, AI rewriting, custom styles) early to beat default voice keyboards."
                                 },
                                 {
-                                  title: "Improved First-Time Experience",
-                                  desc: "Reduce onboarding friction and accelerate activation."
+                                  title: "Landing Page Branding Balance",
+                                  desc: "Increase the visual prominence of Wispr branding on mobile screens to ensure the brand name isn't overshadowed by CTAs."
+                                },
+                                {
+                                  title: "Post-Aha! Rating Prompts",
+                                  desc: "Trigger review prompts only after users choose their writing styles and see the floating button in action to lift Play Store scores."
                                 }
                               ] : activeProjectData.id === "aivoicereceptionist" ? [
                                 {
@@ -1871,7 +1875,7 @@ export default function App() {
                                 : activeProjectData.id === "slikk"
                                 ? "Runner-Up"
                                 : activeProjectData.id === "wispr-flow"
-                                ? "5"
+                                ? "19"
                                 : activeProjectData.id === "linkedin-automation"
                                 ? "100%"
                                 : activeProjectData.id === "homestay-assistant"
@@ -1918,7 +1922,7 @@ export default function App() {
                                 : activeProjectData.id === "slikk"
                                 ? "₹25,000"
                                 : activeProjectData.id === "wispr-flow"
-                                ? "Complete"
+                                ? "~4 min"
                                 : activeProjectData.id === "linkedin-automation"
                                 ? "0 min"
                                 : activeProjectData.id === "homestay-assistant"
@@ -1940,7 +1944,7 @@ export default function App() {
                                 : activeProjectData.id === "slikk"
                                 ? "Prize Money Won"
                                 : activeProjectData.id === "wispr-flow"
-                                ? "UX Audit Completed"
+                                ? "Average Sign-in Time"
                                 : activeProjectData.id === "linkedin-automation"
                                 ? "Manual Posting Effort"
                                 : activeProjectData.id === "homestay-assistant"
